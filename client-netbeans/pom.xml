@@ -16,11 +16,11 @@
 
     <name>Fair Minesweeper for NetBeans</name>
     <description>
-&gt;p&lt;At first sight this is an old good minesweeper game. At closer look, 
-this demonstrates a two revolutionary technologies: 
+&gt;p&lt;At first sight, it looks like an old good minesweeper game. At closer look,
+it shows how two revolutionary technologies work: 
 DukeScript and Controls.js.&gt;/p&lt;
 &gt;p>DukeScript allows you to code your application in JAVA language. 
-Controls.js is a framework for a rapid desktop-like development of web 
+Controls.js is a framework for rapid desktop-like development of web 
 and cross-platform apps.&gt;/p&lt;
     </description>
 

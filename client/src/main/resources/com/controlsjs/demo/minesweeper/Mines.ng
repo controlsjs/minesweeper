@@ -7,11 +7,11 @@
     ViewModel: function (vm) {
       vm.SetViewModel(JavaViewModel);
 
-      this.aboutText = ko.observable('<p>At first sight this is an old good minesweeper '+
-                    'game. At closer look, this demonstrates a two revolutionary '+
-                    'technologies: DukeScript and Controls.js.</p><p>DukeScript allows you '+
+      this.aboutText = ko.observable('<p>At first sight, it looks like an old good minesweeper '+
+                    'game. At closer look, it shows how two revolutionary technologies '+
+                    'work: DukeScript and Controls.js.</p><p>DukeScript allows you '+
                     'to code your application in JAVA language. Controls.js is a framework for '+
-                    'a rapid desktop-like development of web and cross-platform apps.</p>');
+                    'rapid desktop-like development of web and cross-platform apps.</p>');
 
       this.aboutVisible=ko.observable(false);
       
@@ -157,13 +157,13 @@
         Type: 'weText',
         L: '50%', 
         T: '60%', 
-        W: 570,
+        W: 568,
         Theme: WE_DARK,
         style: {
           fontWeight: 'bold',
           fontSize: '20px',
           marginTop: '60px',
-          marginLeft: '-285px'
+          marginLeft: '-284px'
         },
         Data: {
           TextAlign: 'center'
@@ -186,11 +186,11 @@
     style: { zIndex: 10 },    
     Data: {
       SetViewModelData: function(val) {
-        this.Owner.AboutText.SetBounds({W: val ? 460 : 302});
+        this.Owner.AboutText.SetBounds({W: val ? 460 : 300});
         this.Owner.AboutText.Update();
         var o=this.Owner.AboutText.Elm();
         if(o) {
-          o.style.marginLeft='-'+(val ? 230 : 151)+'px';
+          o.style.marginLeft='-'+(val ? 230 : 150)+'px';
           o.style.marginTop='-'+(val ? 149 : 186)+'px';
         }
         var o=this.Owner.HideAbout.Elm();
