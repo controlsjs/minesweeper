@@ -21,13 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.apidesign.demo.minesweeper;
+package com.controlsjs.demo.minesweeper;
 
-public class AndroidMain {
-    private AndroidMain() {
+import org.netbeans.api.htmlui.OpenHTMLRegistration;
+import org.openide.awt.ActionID;
+import org.openide.awt.ActionReference;
+import org.openide.awt.ActionReferences;
+
+public class NbMain {
+    private NbMain() {
     }
-
-    public static void main(String... args) throws Exception {
-        Main.onPageLoad();
+    
+    @ActionID(
+        category = "Games",
+        id = "com.controlsjs.demo.minesweeper.OpenPage"
+    )
+    @OpenHTMLRegistration(
+        url="index.html",
+        techIds={"controls4j"},
+        displayName = "Controls.js Fair Mainsweeper!",
+        iconBase = "com/controlsjs/demo/minesweeper/icon.png"
+    )
+    @ActionReferences({
+        @ActionReference(path = "Menu/Window", position = 153),
+        @ActionReference(path = "Toolbars/Games")
+    })
+    public static void onPageLoad() throws Exception {
+        MinesModel.onPageLoad();
     }
 }

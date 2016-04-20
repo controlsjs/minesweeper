@@ -21,12 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.apidesign.demo.minesweeper;
+package com.controlsjs.demo.minesweeper;
 
-final class iOSMain {
+public class BrowserMain {
+    private BrowserMain() {
+    }
+    
     public static void main(String... args) throws Exception {
-        Main.main(args);
+        MinesModel.onPageLoad();
     }
 }
-
-

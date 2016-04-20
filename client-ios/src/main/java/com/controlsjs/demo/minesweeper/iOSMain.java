@@ -21,14 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.apidesign.demo.minesweeper;
+package com.controlsjs.demo.minesweeper;
 
-public class MainBrwsr {
-    static {
-        try {
-            MinesModel.main();
-        } catch (Exception ex) {
-            throw new IllegalStateException(ex);
-        }
+final class iOSMain {
+    public static void main(String... args) throws Exception {
+        Main.main(args);
     }
 }
+
+

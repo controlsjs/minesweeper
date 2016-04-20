@@ -21,29 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.apidesign.demo.minesweeper;
+package com.controlsjs.demo.minesweeper;
 
-import java.util.Locale;
-import net.java.html.boot.BrowserBuilder;
-
-
-/** Bootstrap and initialization. */
-public final class Main {
-    private Main() {
-    }
-
-    /** Launches the browser */
-    public static void main(String... args) throws Exception {        
-        BrowserBuilder.newBrowser().
-            loadPage("pages/index.html").
-            locale(Locale.getDefault()).
-            loadClass(MinesModel.class).
-            invoke("main", args).
-            showAndWait();
-        System.exit(0);
+public class AndroidMain {
+    private AndroidMain() {
     }
     
-    public static void onPageLoad() throws Exception {
-        MinesModel.main();
+    public static void main(String... args) throws Exception {
+        MinesModel.onPageLoad();
     }
 }

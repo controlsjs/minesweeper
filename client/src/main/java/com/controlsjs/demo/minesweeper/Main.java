@@ -21,13 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.apidesign.demo.minesweeper;
+package com.controlsjs.demo.minesweeper;
 
-public class BrowserMain {
-    private BrowserMain() {
+import net.java.html.boot.BrowserBuilder;
+
+public final class Main {
+    
+    private Main() {
     }
-
+    
     public static void main(String... args) throws Exception {
-        Main.onPageLoad();
+        BrowserBuilder.newBrowser("controls4j").          
+            loadPage("pages/index.html").
+            loadClass(MinesModel.class).
+            invoke("onPageLoad", args).
+            showAndWait();
+        System.exit(0);
     }
 }
