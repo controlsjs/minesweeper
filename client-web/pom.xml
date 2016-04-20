@@ -4,27 +4,29 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.apidesign.demo</groupId>
+        <groupId>com.controlsjs.demo</groupId>
         <artifactId>minesweeper-pom</artifactId>
-        <version>3.0-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.apidesign.demo</groupId>
+    <groupId>com.controlsjs.demo</groupId>
     <artifactId>minesweeper-web</artifactId>
-    <version>3.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>minesweeper Client for Web</name>
 
     <properties>
         <netbeans.compile.on.save>none</netbeans.compile.on.save>
-        <project.mainclass>org.apidesign.demo.minesweeper.BrowserMain</project.mainclass>
+        <project.mainclass>com.controlsjs.demo.minesweeper.BrowserMain</project.mainclass>
         <browser.bootstrap>initialize bck2brwsr --&gt;
 &lt;script type="text/javascript" src="bck2brwsr.js"&gt;&lt;/script&gt;
 &lt;script&gt;
+window.onload = function() { 
     var vm = bck2brwsr('minesweeper.js');
-    var c = vm.loadClass('org.apidesign.demo.minesweeper.BrowserMain');
+    var c = vm.loadClass('com.controlsjs.demo.minesweeper.BrowserMain');
     c.invoke('main');
+};
 &lt;/script&gt;
 &lt;!-- end of initialization </browser.bootstrap>
     </properties>
@@ -136,7 +138,7 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>org.apidesign.demo</groupId>
+            <groupId>com.controlsjs.demo</groupId>
             <artifactId>minesweeper</artifactId>
             <version>${project.version}</version>
             <exclusions>
@@ -171,32 +173,34 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apidesign.bck2brwsr</groupId>
-            <artifactId>ko-bck2brwsr</artifactId>
-            <version>${bck2brwsr.version}</version>
+            <groupId>com.controlsjs.demo</groupId>
+            <artifactId>minesweeper-js</artifactId>
+            <version>${project.version}</version>
             <classifier>bck2brwsr</classifier>
             <scope>provided</scope>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <profiles>
         <profile>
             <id>teavm</id>
             <properties>
-                <teavm.version>0.4.0</teavm.version>
+                <teavm.version>0.4.3</teavm.version>
+                <controls4j.teavm.version>1.0</controls4j.teavm.version>
                 <teavm.debug>false</teavm.debug>
                 <browser.bootstrap>initialize TeaVM --&gt;
 &lt;script type="text/javascript" src="teavm.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-    main();
+    window.onload = function() { main(); };
 &lt;/script&gt;
 &lt;!-- end of initialization </browser.bootstrap>
             </properties>
             <dependencies>
                 <!-- needs special compile time dep otherwise TeaVM ignores the JAR -->
                 <dependency>
-                    <groupId>org.netbeans.html</groupId>
-                    <artifactId>ko4j</artifactId>
-                    <version>${net.java.html.version}</version>
+                    <groupId>com.controlsjs</groupId>
+                    <artifactId>controls4j</artifactId>
+                    <version>${controls4j.version}</version>
                 </dependency>
             </dependencies>
             <build>
@@ -218,6 +222,11 @@
                                 <artifactId>teavm-html4j</artifactId>
                                 <version>${teavm.version}</version>
                             </dependency>
+                            <dependency>
+                                <groupId>com.controlsjs.controls4j</groupId>
+                                <artifactId>teavmsupport</artifactId>
+                                <version>${controls4j.teavm.version}</version>
+                            </dependency>                            
                         </dependencies>
                         <executions>
                             <execution>

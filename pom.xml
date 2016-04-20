@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.apidesign.demo</groupId>
-    <artifactId>minesweeper-pom</artifactId>
-    <version>3.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+  <groupId>com.controlsjs.demo</groupId>
+  <artifactId>minesweeper-pom</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-    <name>minesweeper</name>
+  <name>minesweeper</name>
     <modules>
         <module>client</module>
         <module>client-web</module>
@@ -25,21 +25,24 @@
         </license>
     </licenses>
     <organization>
-        <name>API Design</name>
-        <url>http://apidesign.org</url>
+        <name>Position s.r.o.</name>
+        <url>http://www.position.cz</url>
     </organization>
     <scm>
-        <connection>scm:git:https://github.com/jtulach/minesweeper.git</connection>
-        <developerConnection>scm:git:https://github.com/jtulach/minesweeper.git</developerConnection>
-        <url>https://github.com/jtulach/minesweeper</url>
+        <connection>scm:git:https://github.com/controlsjs/minesweeper.git</connection>
+        <developerConnection>scm:git:https://github.com/controlsjs/minesweeper.git</developerConnection>
+        <url>https://github.com/controlsjs/minesweeper</url>
         <tag>default</tag>
     </scm>
     <properties>
         <net.java.html.version>1.2.3</net.java.html.version>
+        <controlsjs.version>5.0.0</controlsjs.version>
+        <controls4j.version>1.2.1</controls4j.version>
+        <controlsjs.build>release</controlsjs.build>
+        <presenters.version>0.9.1</presenters.version>
         <bck2brwsr.version>0.17</bck2brwsr.version>
-        <bck2brwsr.obfuscationlevel>FULL</bck2brwsr.obfuscationlevel>
-        <nb.html.version>1.0</nb.html.version>
-        <jersey.version>2.13</jersey.version>
+        <bck2brwsr.obfuscationlevel>MINIMAL</bck2brwsr.obfuscationlevel>
+        <jersey.version>2.12</jersey.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <license>LICENSE</license>
     </properties>

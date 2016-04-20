@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-      <groupId>org.apidesign.demo</groupId>
+      <groupId>com.controlsjs.demo</groupId>
       <artifactId>minesweeper-pom</artifactId>
-      <version>3.0-SNAPSHOT</version>
+      <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.apidesign.demo</groupId>
+  <groupId>com.controlsjs.demo</groupId>
   <artifactId>minesweeper-js</artifactId>
-  <version>3.0-SNAPSHOT</version>
+  <version>1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>Fair Minesweeper JavaScript Libraries</name>
@@ -26,10 +26,10 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Export-Package>org.apidesign.demo.minesweeper.js</Export-Package>
-                        <Bundle-SymbolicName>org.apidesign.demo.minesweeper.js</Bundle-SymbolicName>
+                        <Export-Package>com.controlsjs.demo.minesweeper.js</Export-Package>
+                        <Bundle-SymbolicName>com.controlsjs.demo.minesweeper.js</Bundle-SymbolicName>
                     </instructions>
-                </configuration>                
+                </configuration>
             </plugin>
           <plugin>
               <groupId>org.netbeans.html</groupId>
@@ -43,7 +43,7 @@
                       </goals>
                   </execution>
               </executions>
-          </plugin>          
+          </plugin>
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-compiler-plugin</artifactId>
@@ -51,6 +51,21 @@
               <configuration>
                   <source>1.7</source>
                   <target>1.7</target>
+              </configuration>
+          </plugin>
+          <plugin>
+              <groupId>org.apidesign.bck2brwsr</groupId>
+              <artifactId>bck2brwsr-maven-plugin</artifactId>
+              <version>0.16</version>
+              <executions>
+                  <execution>
+                      <goals>
+                          <goal>library</goal>
+                      </goals>
+                  </execution>
+              </executions>
+              <configuration>
+                  <obfuscation>NONE</obfuscation>
               </configuration>
           </plugin>
       </plugins>

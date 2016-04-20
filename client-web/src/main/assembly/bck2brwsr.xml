@@ -37,6 +37,7 @@
       <fileSet>
           <directory>target/web/pages</directory>
           <outputDirectory>/</outputDirectory>
+          <filtered>false</filtered>
           <excludes>
               <exclude>index.html</exclude>
           </excludes>
@@ -49,13 +50,13 @@
               <include>index.html</include>
           </includes>
       </fileSet>
-        <fileSet>
-            <directory>${project.build.directory}</directory>
-            <outputDirectory>/</outputDirectory>
-            <includes>
-                <include>*.js</include>
-                <include>lib/*.js</include>
-            </includes>
-        </fileSet>
+      <fileSet>
+          <directory>${project.build.directory}</directory>
+          <outputDirectory>/</outputDirectory>
+          <includes>
+              <include>*.js</include>
+              <include>lib/*.js</include>
+          </includes>
+      </fileSet>
   </fileSets>
 </assembly>

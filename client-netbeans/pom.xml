@@ -4,31 +4,30 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.apidesign.demo</groupId>
+        <groupId>com.controlsjs.demo</groupId>
         <artifactId>minesweeper-pom</artifactId>
-        <version>3.0-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
-    
-    <groupId>org.apidesign.demo</groupId>
+
+    <groupId>com.controlsjs.demo</groupId>
     <artifactId>minesweeper-nb</artifactId>
-    <version>3.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>nbm-application</packaging>
 
     <name>Fair Minesweeper for NetBeans</name>
     <description>
-At first sight this is an old good &lt;em&gt;minesweeper&lt;/em&gt;
-game. At closer look, this is a demo of a revolutionary
-technology that allows you to use &lt;strong&gt;Java&lt;/strong&gt;
-to code your application logic and present it using
-&lt;strong&gt;HTML&lt;/strong&gt; on any device capable of rendering
-modern &lt;strong&gt;HTML5&lt;/strong&gt; browser.
-Read &lt;a href="http://dukescript.com"&gt;more&lt;/a&gt;
+&gt;p&lt;At first sight this is an old good minesweeper game. At closer look, 
+this demonstrates a two revolutionary technologies: 
+DukeScript and Controls.js.&gt;/p&lt;
+&gt;p>DukeScript allows you to code your application in JAVA language. 
+Controls.js is a framework for a rapid desktop-like development of web 
+and cross-platform apps.&gt;/p&lt;
     </description>
 
     <properties>
-        <netbeans.version>RELEASE81-BETA</netbeans.version>
+        <netbeans.version>RELEASE81</netbeans.version>
         <netbeans.compile.on.save>none</netbeans.compile.on.save>
-        <project.mainclass>org.apidesign.demo.minesweeper.NbMain</project.mainclass>
+        <project.mainclass>com.controlsjs.demo.minesweeper.NbMain</project.mainclass>
     </properties>
     <repositories>
         <repository>
@@ -37,8 +36,8 @@ Read &lt;a href="http://dukescript.com"&gt;more&lt;/a&gt;
             <url>http://bits.netbeans.org/maven2/</url>
         </repository>
         <repository>
-            <id>netbeans-snapshots</id>
-            <name>NetBeans Development</name>
+            <id>dev</id>
+            <name>NetBeans</name>
             <url>http://bits.netbeans.org/nexus/content/repositories/snapshots/</url>
             <snapshots>
                 <enabled>true</enabled>
@@ -59,7 +58,7 @@ Read &lt;a href="http://dukescript.com"&gt;more&lt;/a&gt;
                         </goals>
                     </execution>
                 </executions>
-            </plugin>          
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -112,17 +111,17 @@ Read &lt;a href="http://dukescript.com"&gt;more&lt;/a&gt;
                 <configuration>
                     <artifactItems>
                         <artifactItem>
-                            <groupId>org.apidesign.demo</groupId>
+                            <groupId>com.controlsjs.demo</groupId>
                             <artifactId>minesweeper</artifactId>
                             <version>${project.version}</version>
                             <type>zip</type>
                             <classifier>webpages</classifier>
                             <overWrite>true</overWrite>
-                            <outputDirectory>${project.build.directory}/classes/org/apidesign/demo/minesweeper</outputDirectory>
+                            <outputDirectory>${project.build.directory}/classes/com/controlsjs/demo/minesweeper</outputDirectory>
                         </artifactItem>
                     </artifactItems>
                 </configuration>
-            </plugin>            
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>nbm-maven-plugin</artifactId>
@@ -141,7 +140,7 @@ Read &lt;a href="http://dukescript.com"&gt;more&lt;/a&gt;
                             <cluster>minesweeper</cluster>
                             <verifyIntegrity>false</verifyIntegrity>
                         </configuration>
-                    </execution>                       
+                    </execution>
                     <execution>
                         <id>default-nbm</id>
                         <phase>package</phase>
@@ -152,9 +151,6 @@ Read &lt;a href="http://dukescript.com"&gt;more&lt;/a&gt;
                             <useOSGiDependencies>true</useOSGiDependencies>
                             <cluster>extra</cluster>
                             <verifyIntegrity>false</verifyIntegrity>
-                            <keystore>${user.home}/.keystore</keystore>
-                            <keystorealias>dlvkbrwsr</keystorealias>
-                            <keystorepassword>${password}</keystorepassword>
                         </configuration>
                     </execution>
                 </executions>
@@ -165,7 +161,7 @@ Read &lt;a href="http://dukescript.com"&gt;more&lt;/a&gt;
                     <verifyIntegrity>false</verifyIntegrity>
                     <nbmBuildDir>${project.build.directory}</nbmBuildDir>
                 </configuration>
-            </plugin>                      
+            </plugin>
             <plugin>
                 <groupId>com.filmon.maven</groupId>
                 <artifactId>image-maven-plugin</artifactId>
@@ -176,7 +172,7 @@ Read &lt;a href="http://dukescript.com"&gt;more&lt;/a&gt;
                             <goal>scale</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>target/classes/org/apidesign/demo/minesweeper</outputDirectory>
+                            <outputDirectory>target/classes/com/controlsjs/demo/minesweeper</outputDirectory>
                             <images>
                                 <image>
                                     <source>src/main/icons/launcher.png</source>
@@ -197,7 +193,7 @@ Read &lt;a href="http://dukescript.com"&gt;more&lt;/a&gt;
     </build>
     <dependencies>
         <dependency>
-            <groupId>org.apidesign.demo</groupId>
+            <groupId>com.controlsjs.demo</groupId>
             <artifactId>minesweeper</artifactId>
             <version>${project.version}</version>
             <exclusions>
@@ -213,115 +209,27 @@ Read &lt;a href="http://dukescript.com"&gt;more&lt;/a&gt;
             <version>${net.java.html.version}</version>
         </dependency>
         <dependency>
+          <groupId>com.controlsjs</groupId>
+          <artifactId>controls4j</artifactId>
+          <version>${controls4j.version}</version>
+          <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>org.netbeans.html</groupId>
             <artifactId>net.java.html.boot.fx</artifactId>
             <version>${net.java.html.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-netbeans-api-htmlui</artifactId>
+            <version>${netbeans.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.netbeans.cluster</groupId>
             <artifactId>platform</artifactId>
             <version>${netbeans.version}</version>
             <type>pom</type>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html-boot</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html-boot-fx</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html-boot-script</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html-geo</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html-json</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html-sound</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>org-netbeans-html-ko4j</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-awt</artifactId>
-            <version>${netbeans.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apidesign.demo</groupId>
-            <artifactId>minesweeper-js</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.modules</groupId>
-            <artifactId>org-netbeans-modules-extbrowser</artifactId>
-            <version>${netbeans.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-filesystems</artifactId>
-            <version>${netbeans.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-util-lookup</artifactId>
-            <version>${netbeans.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-netbeans-api-htmlui</artifactId>
-            <version>${netbeans.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html-boot</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html-boot-fx</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html-boot-script</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html-geo</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html-json</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>net-java-html-sound</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.external</groupId>
-                    <artifactId>org-netbeans-html-ko4j</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 </project>

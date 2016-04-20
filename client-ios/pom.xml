@@ -4,21 +4,22 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.apidesign.demo</groupId>
+        <groupId>com.controlsjs.demo</groupId>
         <artifactId>minesweeper-pom</artifactId>
-        <version>3.0-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     
-    <groupId>org.apidesign.demo</groupId>
+    <groupId>com.controlsjs.demo</groupId>
     <artifactId>minesweeper-ios</artifactId>
-    <version>3.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>minesweeper Client for iOS</name>
 
     <properties>
-        <project.mainclass>org.apidesign.demo.minesweeper.iOSMain</project.mainclass>
+        <project.mainclass>com.controlsjs.demo.minesweeper.iOSMain</project.mainclass>
         <netbeans.compile.on.save>none</netbeans.compile.on.save>
+        <robovm.version>1.6.0</robovm.version>
     </properties>
     <build>
         <plugins>
@@ -169,15 +170,16 @@
             <plugin>
                 <groupId>org.robovm</groupId>
                 <artifactId>robovm-maven-plugin</artifactId>
-                <version>1.8.0</version>
+                <version>${robovm.version}</version>
                 <configuration>
                     <config>
                         <mainClass>${project.mainclass}</mainClass>
                         <forceLinkClasses>
                             <pattern>java.util.logging.ConsoleHandler</pattern>
                             <pattern>java.util.logging.SimpleFormatter</pattern>
+                            <pattern>com.controlsjs.controls4j.Controls4J</pattern>
                         </forceLinkClasses>
-                        <executableName>Fair Mines</executableName>
+                        <executableName>Controls.js Fair Minesweeper</executableName>
                         <resources>
                             <resource>target/web/pages/</resource>
                             <resource>
@@ -188,7 +190,6 @@
                                 </includes>
                             </resource>
                         </resources>
-                        <iosInfoPList>Info.plist.xml</iosInfoPList>
                         <os>ios</os>
                     </config>
                     <includeJFX>false</includeJFX>
@@ -208,7 +209,7 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>org.apidesign.demo</groupId>
+            <groupId>com.controlsjs.demo</groupId>
             <artifactId>minesweeper</artifactId>
             <version>${project.version}</version>
             <exclusions>
@@ -221,7 +222,7 @@
         <dependency>
             <groupId>com.dukescript.presenters</groupId>
             <artifactId>ios</artifactId>
-            <version>0.9</version>
+            <version>0.9.1</version>
             <scope>runtime</scope>
             <exclusions>
                 <exclusion>
@@ -243,13 +244,13 @@
         <dependency>
             <groupId>org.robovm</groupId>
             <artifactId>robovm-cocoatouch</artifactId>
-            <version>1.8.0</version>
+            <version>${robovm.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.robovm</groupId>
             <artifactId>robovm-rt</artifactId>
-            <version>1.8.0</version>
+            <version>${robovm.version}</version>
             <type>jar</type>
         </dependency>
     </dependencies>

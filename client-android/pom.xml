@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.apidesign.demo</groupId>
+        <groupId>com.controlsjs.demo</groupId>
         <artifactId>minesweeper-pom</artifactId>
-        <version>3.0-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     
-    <groupId>org.apidesign.demo</groupId>
+    <groupId>com.controlsjs.demo</groupId>
     <artifactId>minesweeper-android</artifactId>
-    <version>3.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>apk</packaging>
 
     <name>minesweeper Client for Android</name>
@@ -116,11 +116,7 @@
                 <version>${android.plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <apkDebug>false</apkDebug>
-                    <release>true</release>
-                    <sign>
-                        <debug>false</debug>
-                    </sign>
+                    <apkDebug>${debug}</apkDebug>
                     <resourceDirectory>target/res</resourceDirectory>
                     <sdk>
                         <platform>${android.platform.version}</platform>
@@ -146,7 +142,7 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>org.apidesign.demo</groupId>
+            <groupId>com.controlsjs.demo</groupId>
             <artifactId>minesweeper</artifactId>
             <version>${project.version}</version>
             <exclusions>
@@ -165,7 +161,7 @@
         <dependency>
             <groupId>com.dukescript.presenters</groupId>
             <artifactId>android</artifactId>
-            <version>0.9</version>
+            <version>0.9.1</version>
             <type>jar</type> 
             <exclusions>
                 <exclusion>
