@@ -1,0 +1,401 @@
+{
+/*
+  ControlsForm: 'Mines'
+*/
+  ViewModel: {
+    Type: 'ngSysViewModel',
+    ViewModel: function (vm) {
+      vm.SetViewModel(JavaViewModel);
+
+      this.aboutText = ko.observable('<p>At first sight this is an old good minesweeper '+
+                    'game. At closer look, this demonstrates a two revolutionary '+
+                    'technologies: DukeScript and Controls.js.</p><p>DukeScript allows you '+
+                    'to code your application in JAVA language. Controls.js is a framework for '+
+                    'a rapid desktop-like development of web and cross-platform apps.</p>');
+
+      this.aboutVisible=ko.observable(false);
+      
+      this.showAbout = function() {
+        this.aboutVisible(true);
+      };
+
+      this.hideAbout = function() {
+        this.aboutVisible(false);
+      };
+
+      var lostcnt=0;
+      JavaViewModel.stateStr.subscribe(function(v) {
+        if(v=='WON') {
+          lostcnt=0;
+          vm.Owner.BackImage.NextImage();
+        }
+        if(v=='LOST') {
+          lostcnt++;    
+          if(lostcnt>4) {
+            vm.Owner.BackImage.PrevImage();
+            lostcnt=0;
+          }
+        }
+      });
+        
+      // in older version of Controls.js we have to simulate ngApp.ViewModel and device profiles
+      var ww=ng_WindowWidth();
+      var wh=ng_WindowHeight();
+      var vmwinwidth=ko.observable(ww);
+      var vmwinheight=ko.observable(wh);
+
+      this.AppWidth=vmwinwidth;
+      this.AppHeight=vmwinheight;
+      
+      this.DeviceGameButtonsLeft=ko.computed(function() {
+        return vmwinheight()<390;
+      },this);
+
+      this.DeviceLandscapeAbout=ko.computed(function() {
+        return vmwinheight()<380;
+      },this);
+
+      this.DeviceSmallBoard=ko.computed(function() {
+          return (vmwinwidth()<500 || vmwinheight()<550);
+      },this);
+
+      this.DeviceTitleNoText=ko.computed(function() {
+          return (vmwinwidth()<570 || vmwinheight()<640);
+      },this);
+
+      this.DeviceTitleSquareButtons=ko.computed(function() {
+          return (vmwinwidth()<480) || this.DeviceTitleNoText();
+      },this);
+
+      var resizetimer=null;
+      function app_resize() {
+        if(resizetimer) clearTimeout(resizetimer);
+        resizetimer=setTimeout(function() {
+          clearTimeout(resizetimer); resizetimer=null;
+          var ww=ng_WindowWidth();
+          var wh=ng_WindowHeight();
+          if(vmwinwidth()!=ww) vmwinwidth(ww);
+          if(vmwinheight()!=wh) vmwinheight(wh);
+        },80); // invoke before nga_DoResize ...<100        
+      }
+      window.onresize = ngAddEvent(window.onresize, app_resize);    
+    }
+  },
+  BackImage: {
+    Type: 'minesweeperImage',
+    L: 0,
+    T: 0,
+    R: 0,
+    B: 0
+  },
+  Title: {
+    Type: 'ngPanel',
+    L: 0,
+    T: 0,
+    R: 0,
+    B: 0,
+    style: { zIndex: 10 },    
+    DataBind: ng_Bindings({ Visible: '!fieldShowing() && !aboutVisible()' }),
+    Controls: {
+      TitleImg: {
+        Type: 'minesweeperTitle',
+        L: 0,
+        T: 0,
+        H: '60%',
+        B: 0
+      },
+      TitleButtons: {
+        Type: 'ngToolBar',
+        L: '50%',
+        T: '60%',
+        W: 440,
+        style: { marginLeft: '-220px' },
+        Data: {
+          VPadding: 10,
+          HPadding: 10,
+          AutoSize: true,
+          SetViewModelData: function(val)  {
+            this.SetBounds({W: val ? 290 : 440});
+            this.Update();
+            var o=this.Elm();
+            if(o) o.style.marginLeft=val ? '-145px' : '-220px';
+          }
+        },
+        DataBind: ng_Bindings({ Data: 'DeviceTitleSquareButtons' }),
+        Controls: {
+          PlayGame: {
+            Type: 'weButton',
+            W: 140,
+            ColorScheme: 'White',
+            Data: { Text: 'Play Game' },
+            DataBind: ng_Bindings({ OnClick: 'normalGame' })
+          },
+          ShowAbout: {
+            Type: 'weButton',
+            W: 140,
+            ColorScheme: 'White',
+            Data: { Text: 'About' },
+            DataBind: ng_Bindings({ OnClick: 'showAbout', Visible: 'DeviceTitleNoText' })
+          },
+          VisitControlsJS: {
+            Type: 'weButton',
+            W: 140,
+            ColorScheme: 'White',
+            Data: { Text: 'Visit Controls.js' },
+            DataBind: ng_Bindings({ OnClick: 'urlControlsJS' })            
+          },
+          VisitDukeScript: {
+            Type: 'weButton',
+            W: 140,
+            ColorScheme: 'White',
+            Data: { Text: 'Visit DukeScript' },
+            DataBind: ng_Bindings({ OnClick: 'urlProjectPage' })            
+          }
+        }
+      },
+      TitleText: {
+        Type: 'weText',
+        L: '50%', 
+        T: '60%', 
+        W: 570,
+        Theme: WE_DARK,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '20px',
+          marginTop: '60px',
+          marginLeft: '-285px'
+        },
+        Data: {
+          TextAlign: 'center'
+        },
+        DataBind: ng_Bindings({ Text: 'aboutText', Visible: '!DeviceTitleNoText()' }),
+        OverrideEvents: {
+          OnGetText: function(c) {
+            return ng_OutlineHTML(c.Text,'#000000');
+          }
+        }
+      }
+    }
+  },
+  About: {
+    Type: 'ngPanel',
+    L: 0,
+    T: 0,
+    R: 0,
+    B: 0,
+    style: { zIndex: 10 },    
+    Data: {
+      SetViewModelData: function(val) {
+        this.Owner.AboutText.SetBounds({W: val ? 460 : 302});
+        this.Owner.AboutText.Update();
+        var o=this.Owner.AboutText.Elm();
+        if(o) {
+          o.style.marginLeft='-'+(val ? 230 : 151)+'px';
+          o.style.marginTop='-'+(val ? 149 : 186)+'px';
+        }
+        var o=this.Owner.HideAbout.Elm();
+        if(o) {
+          o.style.marginTop=(val ? 110 : 141)+'px';          
+        }
+      }        
+    },
+    DataBind: ng_Bindings({ Visible: '!fieldShowing() && aboutVisible()', Data: 'DeviceLandscapeAbout' }),
+    Controls: {
+      AboutText: {
+        Type: 'weText',
+        L: '50%', 
+        T: '50%', 
+        W: 300,
+        Theme: WE_DARK,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '20px',
+          marginLeft: '-150px',
+          marginTop: '-166px'
+        },
+        Data: {
+          TextAlign: 'center'
+        },
+        OverrideEvents: {
+          OnGetText: function(c) {
+            return ng_OutlineHTML(c.Text,'#000000');
+          }
+        },
+        DataBind: ng_Bindings({ Text: 'aboutText' }),
+      },
+      HideAbout: {
+        Type: 'weButton',
+        L: '50%',
+        T: '50%',
+        W: 140,
+        style: {
+          marginTop: '150px',
+          marginLeft: '-70px'
+        },
+        ColorScheme: 'White',
+        Data: { Text: 'OK' },
+        DataBind: ng_Bindings({ OnClick: 'hideAbout' })
+      }        
+    }
+  },
+  Game: {
+    Type: 'ngPanel',
+    L: 0,
+    T: 0,
+    R: 0,
+    B: 0,
+    style: { zIndex: 10 },
+    DataBind: ng_Bindings({ Visible: 'fieldShowing' }),
+    Controls: {
+      GameButtons: {
+        Type: 'weToolBar',
+        L: '50%',
+        T: '50%',
+        W: 491,
+        H: 32,
+        style: { marginLeft: '-245px' },
+        Data: {
+          VPadding: 9,
+          HPadding: 9,
+          SetViewModelData: function(val)  {
+            var vm=this.Owner.ViewModel.ViewModel;
+            var small=vm.DeviceSmallBoard();
+            var buttonsleft=vm.DeviceGameButtonsLeft();
+            if(buttonsleft)
+              this.SetBounds({W: 100, H: 158 });
+            else
+              this.SetBounds({W: small ? 291 : 491, H: small ? 74 : 32 });
+            var bw,ch=this.ChildControls;
+            if(buttonsleft) bw=100;
+            else bw=small ? 141 : 115;
+            for(var i=0;i<ch.length;i++)
+              ch[i].SetBounds({W: bw });
+            this.Update();
+            this.Owner.Playground.Update();
+          }
+        },
+        DataBind: ng_Bindings({ Data: 'DeviceSmallBoard() || DeviceGameButtonsLeft()' }),
+        Controls: {
+          Intro: {
+            Type: 'weButton',
+            W: 115,
+            Data: { Text: 'Intro' },
+            ColorScheme: 'White',
+            DataBind: ng_Bindings({ OnClick: 'showHelp' })
+          },
+          NewGame: {
+            Type: 'weButton',
+            W: 115,
+            Data: { Text: 'New Game' },
+            ColorScheme: 'White',
+            DataBind: ng_Bindings({ OnClick: 'normalGame' })
+          },
+          GiveUp: {
+            Type: 'weButton',
+            W: 115,
+            Data: { Text: 'Give Up' },
+            ColorScheme: 'White',
+            DataBind: ng_Bindings({ OnClick: 'giveUp', Enabled: 'stateStr()=="IN_PROGRESS" || stateStr()=="MARKING_MINE"' })
+          },
+          MarkMine: {
+            Type: 'weButton',
+            W: 115,
+            Data: { Text: 'Mark Mine' },
+            ColorScheme: 'White',
+            DataBind: ng_Bindings({ OnClick: 'markMine', Enabled: 'stateStr()=="IN_PROGRESS" || stateStr()=="MARKING_MINE"', Value: 'stateStr()=="MARKING_MINE"' })
+          }
+        }
+      },
+      Playground: {
+        Type: 'ngToolBar',
+        L: '50%',
+        T: '50%',
+        W: 500,
+        H: 500,
+        ParentReferences: false,
+        Data: {
+          VPadding: 0,
+          HPadding: 0,
+          SquareDef: {
+            Type: 'minesweeperSquare',
+            style: {
+              marginTop: '-1px',
+              marginLeft: '-1px'
+            }
+          },
+          SetViewModelData: function(rows)  {
+            this.Controls.Dispose();
+            if((!rows)||(!rows.length)) return;
+            var ldef = {};
+            var maxcols = 0;
+            for (var i = 0; i < rows.length; i++) {
+              var cols = rows[i].columns();
+              if (cols.length > maxcols)
+                maxcols = cols.length;
+              for (var j = 0; j < cols.length; j++) {
+                var ref = 'rows()[' + i + '].columns()[' + j + ']';
+                var sqdef = ng_CopyVar(this.SquareDef);
+                ng_MergeDef(sqdef, {
+                  Data: {
+                    Square: cols[j],
+                    ToolBarBreak: j == 0
+                  },
+                  DataBind: ng_Bindings({ Data: '(DeviceSmallBoard() ? "SMALL_" : "") + (gameStyle() == "MARKING" && ' + ref + '.style()=="UNKNOWN" ? "MARKMODE" : ' + ref + '.style())' }),
+                  Events: {
+                    OnClick: function (e) {
+                      JavaViewModel.click(e.Owner.Square);
+                    }
+                  }
+                });
+                ldef['Sq_' + i + '_' + j] = sqdef;
+              }
+            }
+            this.Rows=rows.length;
+            this.Cols=maxcols;
+            this.Controls.AddControls(ldef);
+            this.Update();
+          }
+        },
+        DataBind: ng_Bindings({ Data: 'rows' }),
+        Events: {
+          OnUpdate: function(c) {
+            var vm=this.Owner.ViewModel.ViewModel;
+            var small=vm.DeviceSmallBoard();
+            var buttonsleft=vm.DeviceGameButtonsLeft();
+
+            var sw,sh;
+            if(small) { sw=30; sh=30; }
+            else      { sw=50; sh=50; }
+
+            var w = ngVal(c.Cols,0) * (sw - 1) + 1;
+            var h = ngVal(c.Rows,0) * (sh - 1) + 1;
+            var w2 = Math.round(w / 2);
+            var h2 = Math.round(h / 2);
+            var bt,bl;
+            if(buttonsleft) {
+              bt=0;
+              bl=110/2;
+            }
+            else {
+              bt=(small ? 84 : 52)/2;
+              bl=0;
+            }
+            
+            var o = c.Elm();
+            if (o) {
+              o.style.marginLeft = '-' + (w2-bl) + 'px';
+              o.style.marginTop  = '-' + (h2-bt) + 'px';
+            }
+            c.SetBounds({ W: w,H: h });
+            o=c.Owner.GameButtons.Elm();
+            if(o) {
+              o.style.marginLeft='-' + (w2+bl) + 'px';
+              o.style.marginTop ='-' + (h2+bt) + 'px';
+            }
+            return true;
+          }
+        }
+      }  
+    }
+  }
+}

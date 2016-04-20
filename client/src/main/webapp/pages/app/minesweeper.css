@@ -1,0 +1,16 @@
+.Back {
+  visibility:visible;
+  opacity:100;
+  filter:alpha(opacity=100);
+}
+
+.BackHidden {
+  visibility:hidden;
+  opacity:0;
+  filter:alpha(opacity=0);
+  -webkit-transition:visibility 0s linear 1s,opacity 1s linear;
+  -moz-transition:visibility 0s linear 1s,opacity 1s linear;
+  -ms-transition:visibility 0s linear 1s,opacity 1s linear;
+  -o-transition:visibility 0s linear 1s,opacity 1s linear;
+  transition:visibility 0s linear 1s,opacity 1s linear;
+}
