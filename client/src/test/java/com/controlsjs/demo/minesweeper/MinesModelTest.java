@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.apidesign.demo.minesweeper;
+package com.controlsjs.demo.minesweeper;
 
-import org.apidesign.demo.minesweeper.MinesModel.SquareType;
+import com.controlsjs.demo.minesweeper.MinesModel.SquareType;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 

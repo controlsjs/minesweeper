@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.apidesign.demo.minesweeper.js;
+package com.controlsjs.demo.minesweeper.js;
 
 import java.util.ServiceLoader;
 import net.java.html.js.JavaScriptBody;
