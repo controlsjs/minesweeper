@@ -1,10 +1,10 @@
-# Fair Minesweeper
+# Controls.js Fair Minesweeper
 
-Fair Minesweeper is a cross-platform game written in Java and rendered with
-client side only HTML. It runs on any device on the Planet:
-* [play on-line](http://xelfi.cz/minesweeper/bck2brwsr) in your browser
-* [install Android version](https://play.google.com/store/apps/details?id=org.apidesign.demo.minesweeper)
-* [install iOS version](https://itunes.apple.com/us/app/fair-minesweeper/id903688146)
-* Package as **OSGi** bundle: [Minesweeper as a plugin](http://plugins.netbeans.org/plugin/53864/)
+Controls.js Fair Minesweeper is a cross-platform game written in Java and rendered with
+HTML client side framework Controls.js. It runs on any device on the Planet:
+* [TBD play on-line](http://controlsjs.com) in your browser
+* [TBD install Android version](https://play.google.com)
+* [TBD install iOS version](https://itunes.apple.com/)
+* TBD Package as **OSGi** bundle: [Minesweeper as a plugin](http://plugins.netbeans.org/)
 
-Write your cross-platform HTML applications in Java thanks too: Use [DukeScript](https://dukescript.com/getting_started.html)!
+Write your cross-platform HTML applications in Java thanks to: [Controls.js](http://controlsjs.com) and  [DukeScript](https://dukescript.com/getting_started.html)!
