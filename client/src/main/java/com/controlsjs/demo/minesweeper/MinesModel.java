@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.apidesign.demo.minesweeper;
+package com.controlsjs.demo.minesweeper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ import net.java.html.json.Model;
 import net.java.html.json.ModelOperation;
 import net.java.html.json.Property;
 import net.java.html.sound.AudioClip;
-import org.apidesign.demo.minesweeper.js.OpenURL;
+import com.controlsjs.demo.minesweeper.js.OpenURL;
 
 /**
  * Model of the mine field.
@@ -99,6 +99,11 @@ public final class MinesModel {
     @ComputedProperty
     static boolean gameInProgress(GameState state) {
         return state == GameState.IN_PROGRESS;
+    }
+
+    @ComputedProperty
+    static String stateStr(GameState state) {
+        return state == null ? "" : state.toString();
     }
 
     @Function
@@ -306,67 +311,13 @@ public final class MinesModel {
 
     @Function
     static void urlProjectPage(Mines model) {
-        String url = "https://dukescript.com";
+        String url = "http://dukescript.com";
         openURL(url);
     }
 
     @Function
-    static void urlProjectDoc(Mines model) {
-        String url = "https://dukescript.com/documentation.html"; // NOI18N
-        openURL(url);
-    }
-
-    @Function
-    static void urlBck2Brwsr(Mines model) {
-        String url = "http://bck2brwsr.apidesign.org"; // NOI18N
-        openURL(url);
-    }
-
-    @Function
-    static void urlBrowserSweeper(Mines model) {
-        String url = "http://xelfi.cz/minesweeper/bck2brwsr/"; // NOI18N
-        openURL(url);
-    }
-
-    @Function
-    static void urlPresenters(Mines model) {
-        String url = "https://github.com/dukescript/dukescript-presenters"; // NOI18N
-        openURL(url);
-    }
-
-    @Function
-    static void urlGooglePlay(Mines model) {
-        String url = "https://play.google.com/store/apps/details?id=org.apidesign.demo.minesweeper"; // NOI18N
-        openURL(url);
-    }
-
-    @Function
-    static void urlRoboVM(Mines model) {
-        String url = "http://www.robovm.org"; // NOI18N
-        openURL(url);
-    }
-
-    @Function
-    static void urlAppStore(Mines model) {
-        String url = "https://itunes.apple.com/us/app/fair-minesweeper/id903688146"; // NOI18N
-        openURL(url);
-    }
-
-    @Function
-    static void urlNetBeansPlugin(Mines model) {
-        String url = "http://plugins.netbeans.org/plugin/53864/"; // NOI18N
-        openURL(url);
-    }
-
-    @Function
-    static void urlNetBeans(Mines model) {
-        String url = "http://www.netbeans.org"; // NOI18N
-        openURL(url);
-    }
-
-    @Function
-    static void urlDevelop(Mines model) {
-        String url = "https://dukescript.com/getting_started.html"; // NOI18N
+    static void urlControlsJS(Mines model) {
+        String url = "http://controlsjs.com";
         openURL(url);
     }
 
@@ -570,7 +521,7 @@ public final class MinesModel {
 
     private static Mines ui;
 
-    public static void main(String... args) throws Exception {
+    public static void onPageLoad() throws Exception {
         ui = new Mines();
         ui.applyBindings();
     }
