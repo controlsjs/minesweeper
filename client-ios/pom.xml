@@ -14,7 +14,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>minesweeper Client for iOS</name>
+    <name>Fair Minesweeper for iOS</name>
 
     <properties>
         <project.mainclass>com.controlsjs.demo.minesweeper.iOSMain</project.mainclass>
