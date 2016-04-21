@@ -25,7 +25,7 @@ if(typeof ngUserControls === 'undefined') ngUserControls = new Array();
 ngUserControls['java_demo_minesweeper'] = MinesweeperControls = {
 
   ControlImages: [
-    'images/minesweeper.png?2',
+    'images/minesweeper.png?3',
     'images/minesweeper_title.png?1',
     'background/ground1.jpg?1',
     'background/ground2.jpg?1',
@@ -50,6 +50,7 @@ ngUserControls['java_demo_minesweeper'] = MinesweeperControls = {
     MARKMODE:  { L: 490, T: 0, oL:441, W: 50, H: 50 },
     N_0:       { L: 539, T: 0, W: 50, H: 50 },
     UNKNOWN:   { L: 588, T: 0, W: 50, H: 50 },
+    DISCOVERED:{ L: 637, T: 0, W: 50, H: 50 },
     
     SMALL_EXPLOSION: { L: 0,   T: 50, W: 30, H: 30 },
     SMALL_N_1:       { L: 29,  T: 50, W: 30, H: 30 },
@@ -64,6 +65,7 @@ ngUserControls['java_demo_minesweeper'] = MinesweeperControls = {
     SMALL_MARKMODE:  { L: 290, T: 50, oL:261, W: 30, H: 30 },
     SMALL_N_0:       { L: 319, T: 50, W: 30, H: 30 },
     SMALL_UNKNOWN:   { L: 348, T: 50, W: 30, H: 30 },
+    SMALL_DISCOVERED:{ L: 377, T: 50, W: 30, H: 30 }
   },
 
   OnInit: function() {
