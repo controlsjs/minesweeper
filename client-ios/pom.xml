@@ -19,7 +19,7 @@
     <properties>
         <project.mainclass>com.controlsjs.demo.minesweeper.iOSMain</project.mainclass>
         <netbeans.compile.on.save>none</netbeans.compile.on.save>
-        <robovm.version>1.6.0</robovm.version>
+        <robovm.version>1.8.0</robovm.version>
     </properties>
     <build>
         <plugins>
@@ -190,9 +190,14 @@
                                 </includes>
                             </resource>
                         </resources>
+                        <iosInfoPList>Info.plist.xml</iosInfoPList>
                         <os>ios</os>
                     </config>
                     <includeJFX>false</includeJFX>
+                    <!--
+                    <iosSignIdentity></iosSignIdentity>
+                    <iosProvisioningProfile></iosProvisioningProfile>
+                    -->
                 </configuration>
                 <!--
                 <executions>
