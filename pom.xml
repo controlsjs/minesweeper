@@ -72,6 +72,7 @@
                             <rules>
                                 <DependencyConvergence/>
                             </rules>
+                            <fail>false</fail>
                         </configuration>
                     </execution>
                 </executions>              
