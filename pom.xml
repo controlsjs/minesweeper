@@ -40,7 +40,7 @@
         <controls4j.version>1.2.1</controls4j.version>
         <controlsjs.build>release</controlsjs.build>
         <presenters.version>0.9.1</presenters.version>
-        <bck2brwsr.version>0.16</bck2brwsr.version>
+        <bck2brwsr.version>0.17</bck2brwsr.version>
         <bck2brwsr.obfuscationlevel>MINIMAL</bck2brwsr.obfuscationlevel>
         <jersey.version>2.12</jersey.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
